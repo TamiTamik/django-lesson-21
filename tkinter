@@ -8,6 +8,7 @@ window.title('Бүртгэлийн программ')
 window.geometry('450x350')
 window.resizable(0,0)
 
+master_data = []
 
 selected_index = 0
 find = StringVar()
@@ -46,13 +47,17 @@ def find():
         text.tag_config('found', foreground='red')  
     edit.focus_set() 
 
+def show_data():
+    for i in master_data:
+        list_data.insert(END, i)
+
 def user_save():
     if reg_no.get() == '' or owog.get() == '' or ner.get() == '' or utas.get() == '':
         msgbox.showwarning('Анхаар','Мэдээллийг бүрэн оруулна уу')
-    elif reg_no.get() == reg_no.set(data[0]) or owog.get() == owog.set(data[1]) or ner.get() == ner.set(data[2]) or utas.get() == utas.set(data[3]):
-        msgbox.showwarning('Анхаар','Тийм хvн бvртгэгдсэн байна')
     else :
-        list_data.insert(END, reg_no.get() + ','+ owog.get()+','+ ner.get()+','+ utas.get())
+        row = reg_no.get() + ','+ owog.get()+','+ ner.get()+','+ utas.get()        
+        master_data.append(row)
+        show_data()
         clear_entries()
 
 def user_update():
@@ -105,9 +110,7 @@ def user_select(event):
 list_data = Listbox(window, width=50, height=8)
 list_data.grid(row=4, rowspan=1, column=0, columnspan=4)
 list_data.bind('<<ListboxSelect>>', user_select)
-list_data.insert(END, "register1 owog1 ner1 utas1")
-list_data.insert(END, "register2 owog2 ner2 utas2")
-list_data.insert(END, "register3 owog3 ner3 utas3")
+
 
 scroll = Scrollbar(window)
 scroll.grid(row=4, column=4)
