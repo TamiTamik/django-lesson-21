@@ -41,8 +41,9 @@ li a:hover:not(.active) {
 
 <ul>
   <li><a href="http://127.0.0.1:8000/">Main Page</a></li>
-  <li><a href="http://127.0.0.1:8000/post">Post</a></li>
-  <li><a href="http://127.0.0.1:8000/about">About</a></li>
+  {% for i in categories %}
+  <li><a href="{% url 'posts' %}">{{ i.name }}</a></li>
+  {% endfor %}
 </ul>
 
 <div style="padding:20px;margin-top:30px;height:1500px;">

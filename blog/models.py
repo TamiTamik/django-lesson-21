@@ -16,4 +16,4 @@ class Category(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.title + ' - ' + str(self.created)[:10]
+        return self.name

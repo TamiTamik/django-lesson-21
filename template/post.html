@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    
+
 <style>
 body {margin:0;}
 
@@ -41,18 +41,16 @@ li a:hover:not(.active) {
 
 <ul>
   <li><a href="http://127.0.0.1:8000/">Main Page</a></li>
-  <li><a href="http://127.0.0.1:8000/post">Post</a></li>
-  <li><a href="http://127.0.0.1:8000/about">About</a></li>
+  {% for i in categories %}
+  <li><a href="{% url 'posts'%}">{{ i.name }}</a></li>
+  {% endfor %}
 </ul>
 
 <div style="padding:20px;margin-top:30px;height:1500px;">
-  <h1>Posts</h1>
-    <div>
-        {% for i in posts%}
-            <h2>{{i.title}} - {{ i.created }}</h2>
-            <p>{{i.text}}</p>
-        {% endfor %}
-    </div>
+  {% for i in posts %}
+    <h3>{{i.title}} {{i.created}}</h3>
+    <p>{{i.text}}</p>
+  {% endfor %}
 </div>
 
 </body>
